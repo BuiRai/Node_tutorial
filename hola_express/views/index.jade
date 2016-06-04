@@ -2,4 +2,14 @@ html
 	head
 		title Mi primera página web con Express
 	body
-		h1!= hola
+		// Este es un comentario
+		- var arreglo = [1,2,3,4,5];
+		each item in arreglo
+			if true
+				case item
+					when 1
+						p El item era 1
+					when 2
+						p El item era 2
+					default
+						p Hola, haz clic en #[a(href="#") este link] por favor
