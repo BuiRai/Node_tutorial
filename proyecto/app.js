@@ -6,6 +6,7 @@ var Schema = mongoose.Schema; // La clase Schema viene de mongoose
 
 mongoose.connect("mongodb://localhost/fotolucario");
 
+// Este esquema es como se va a guardar el documento en mongoDB
 var userSchemaJSON = {
 	email: String,
 	password: String
