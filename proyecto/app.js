@@ -1,20 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var User = require("./models/user").User;
 var app = express();
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema; // La clase Schema viene de mongoose
-
-mongoose.connect("mongodb://localhost/fotolucario");
-
-// Este esquema es como se va a guardar el documento en mongoDB
-var userSchemaJSON = {
-	email: String,
-	password: String
-};
-
-var user_schema = new Schema(userSchemaJSON); // Se crea un objeto que mongoose entiende
-
-var User = mongoose.model("User", user_schema); // Se crea un modelo y a partir de ello el documento en mongoDB
 
 app.use("/static", express.static("public"));
 // app.use("/static", express.static("assets"));
