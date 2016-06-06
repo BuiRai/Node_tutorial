@@ -13,6 +13,12 @@ var user_schema = new Schema({
 	birthday: Date
 });
 
+user_schema.virtual("password_confirmation").get(function(){
+	return this.user_password_confirmation;
+}).set(function(password){
+	this.user_password_confirmation = password;
+});
+
 // 1er parámetro: nombre del modelo
 // 2o parámetro: el schema a usar
 var User = mongoose.model("User", user_schema);
