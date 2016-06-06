@@ -31,12 +31,17 @@ app.post("/users", function(req, res){
 		password_confirmation: req.body.user_password_confirmation
 	});
 
-	user.save(function(err){
+	// Using Promise, un Promise es lo que me retorna el
+	// user.save();
+	user.save().then(function(user){
+		res.send("Usuario guardado exitosamente");
+	}, function(err){
 		if (err) {
 			console.log(String(err));
+			res.send("No pudimos guardar tus datos :(");
 		}
-		res.send("Guardamos tus datos");
 	});
+
 });
 
 app.listen(8080, function(){
