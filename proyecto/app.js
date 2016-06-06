@@ -1,16 +1,22 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;
+var session = require("express-session");
+
 var app = express();
 
 app.use("/static", express.static("public"));
 // app.use("/static", express.static("assets"));
-
 app.use(bodyParser.json());
 // "extended: true" me permite parsear arrays y strings
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({
+	secret: "R10lu4ndLuc4r10" // secret dummy
+}));
 
 app.set("view engine", "jade");
+
+// Routes
 
 app.get("/", function(req, res){
 	res.render("index");
@@ -62,6 +68,9 @@ app.post("/sessions", function(req, res){
 		password: req.body.user_password
 	}, function(err, docs){
 		console.log(docs);
+		req.session.user_id = {
+			
+		}
 		res.send("Hola mundo");
 	});
 });
