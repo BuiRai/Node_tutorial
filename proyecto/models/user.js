@@ -4,7 +4,13 @@ var Schema = mongoose.Schema;
 mongoose.connect("mongodb://localhost/fotolucario");
 
 var email_match = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-// var match = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/;
+
+var password_validation = {
+	validator: function(_pass){
+		return this.password_confirmation == _pass;
+	},
+	message: "Las contraseñas no son iguales"
+}
 
 // Se crea un objeto que mongoose entiende
 var user_schema = new Schema({
@@ -19,7 +25,8 @@ var user_schema = new Schema({
 	// Validaciones
 	password: {
 		type: String,
-		minlength: [4, "El password muy corto"]
+		minlength: [4, "El password muy corto"],
+		validate: password_validation
 	},
 	// Validaciones
 	age: {
