@@ -16,12 +16,20 @@ app.get("/", function(req, res){
 	res.render("index");
 });
 
+app.get("/signup", function(req, res){
+	User.find(function(err, data){
+		console.log(data);
+	});
+	res.render("signup");
+});
+
 app.get("/login", function(req, res){
 	User.find(function(err, data){
 		console.log(data);
 	});
 	res.render("login");
 });
+
 
 app.post("/users", function(req, res){
 	var user = new User({
@@ -42,6 +50,20 @@ app.post("/users", function(req, res){
 		}
 	});
 
+});
+
+app.post("/sessions", function(req, res){
+
+	// 1er parámetro: Json con los querys
+	// 2o parámetro: columnas retornaddas (omitido en este caso)
+	// 3er parámetro: un callback
+	User.findOne({
+		email: req.body.user_email,
+		password: req.body.user_password
+	}, function(err, docs){
+		console.log(docs);
+		res.send("Hola mundo");
+	});
 });
 
 app.listen(8080, function(){
