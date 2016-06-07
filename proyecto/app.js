@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;
 var session = require("express-session");
+var routerApp = require("./routes_app");
 
 var app = express();
 
@@ -78,6 +79,8 @@ app.post("/sessions", function(req, res){
 		res.send("Hola mundo");
 	});
 });
+
+app.use("/app", routerApp);
 
 app.listen(8080, function(){
 	console.log("Listen in http://localhost:8080");
