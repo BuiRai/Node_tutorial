@@ -5,18 +5,23 @@ extends ./layout.jade
 // block "contenido", el "contenido" es como se declaro
 // en el layout.
 block contenido
-	form(action="/users" method="POST")
-		div(class="form-group")
-			label(for="email") Email
-			input(type="email" name="user_email" placeholder="example@example.com" id="email" class="form-control")
-		div(class="form-group")
-			label(for="password") Contraseña
-			input(type="password" name="user_password" placeholder="password" id="password" class="form-control")
-		div(class="form-group")
-			label(for="password_confirmation") Confirma tu contraseña
-			input(type="password" name="user_password_confirmation" placeholder="password" id="password_confirmation" class="form-control")
-		div(class="form-group")
-			label(for="username") Username
-			input(type="text" name="username" placeholder="Username" id="username" class="form-control")
-		div
-			input(type="submit" value="Registrarse" class="btn btn-success")
+	div(class="col-md-6 remove-float center-block big-top-space")
+		form(action="/users" method="POST")
+			div(class="form-group")
+				label(for="email") Email
+				input(type="email" name="user_email" placeholder="example@example.com" id="email" class="form-control")
+			div(class="form-group")
+				label(for="password") Contraseña
+				input(type="password" name="user_password" placeholder="password" id="password" class="form-control")
+			div(class="form-group")
+				label(for="password_confirmation") Confirma tu contraseña
+				input(type="password" name="user_password_confirmation" placeholder="password" id="password_confirmation" class="form-control")
+			div(class="form-group")
+				label(for="username") Username
+				input(type="text" name="username" placeholder="Username" id="username" class="form-control")
+
+			div(class="row top-space")
+				div(class="col-xs-12 col-sm-6")
+					input(type="submit" value="Registrar" class="btn btn-success")
+				div(class="col-xs-12 col-sm-6 text-right")
+					a(href="/login" class="text-success") Ya tengo cuenta

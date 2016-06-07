@@ -7,7 +7,7 @@ var session_middleware = require("./middlewares/session");
 
 var app = express();
 
-app.use("/static", express.static("public"));
+app.use(express.static("public"));
 // app.use("/static", express.static("assets"));
 app.use(bodyParser.json());
 // "extended: true" me permite parsear arrays y strings
@@ -77,7 +77,7 @@ app.post("/sessions", function(req, res){
 		// en req.session se guarda la información de la sesion
 		// en este caso se le va a agregar el ._id que genera mongo
 		req.session.user_id = user._id;
-		res.send("Hola mundo");
+		res.redirect("/app");
 	});
 });
 
