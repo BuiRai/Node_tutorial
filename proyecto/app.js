@@ -11,7 +11,10 @@ app.use(bodyParser.json());
 // "extended: true" me permite parsear arrays y strings
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
-	secret: "R10lu4ndLuc4r10" // secret dummy
+	secret: "R10lu4ndLuc4r10", // secret dummy
+	// Define si la sesión tiene que volverse a guardar
+	resave: true,
+	saveUninitialized: false
 }));
 
 app.set("view engine", "jade");
@@ -19,6 +22,7 @@ app.set("view engine", "jade");
 // Routes
 
 app.get("/", function(req, res){
+	console.log(req.session.user_id);
 	res.render("index");
 });
 
@@ -66,11 +70,11 @@ app.post("/sessions", function(req, res){
 	User.findOne({
 		email: req.body.user_email,
 		password: req.body.user_password
-	}, function(err, docs){
-		console.log(docs);
-		req.session.user_id = {
-			
-		}
+	}, function(err, user){
+		console.log(user);
+		// en req.session se guarda la información de la sesion
+		// en este caso se le va a agregar el ._id que genera mongo
+		req.session.user_id = user._id;
 		res.send("Hola mundo");
 	});
 });
