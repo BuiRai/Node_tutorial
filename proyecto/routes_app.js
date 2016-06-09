@@ -31,7 +31,17 @@ router.route("/imagenes/:id")
 // Conjunto de rutas para "/imagenes"
 router.route("/imagenes")
 	.get(function(req, res){
+		Image.find({
 
+		}, function(err, images){
+			if ( err ) {
+				res.redirect("/app");
+				return;
+			}
+			res.render("app/imagenes/index", {
+				images: images
+			})
+		});
 	})
 	.post(function(req, res){
 		var data = {

@@ -1,0 +1,16 @@
+extends ../../layout
+
+block contenido
+	div(class="container")
+		h1 Mis imágenes
+		for image in images
+			.white.border.tr.large-padding
+				.row
+					.col-md-10
+						h2= image.title
+					.col-md-2
+						a(href="app/imagenes/#{image._id}/edit" class="right-space") Editar
+						a(href="app/imagenes/#{image._id}") Eliminar
+
+			
+				
