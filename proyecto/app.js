@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;
-var session = require("express-session");
+var cookieSession = require("cookie-session");
 var routerApp = require("./routes_app");
 var session_middleware = require("./middlewares/session");
 
@@ -12,11 +12,9 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 // "extended: true" me permite parsear arrays y strings
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(session({
-	secret: "R10lu4ndLuc4r10", // secret dummy
-	// Define si la sesión tiene que volverse a guardar
-	resave: true,
-	saveUninitialized: false
+app.use(cookieSession({
+	name: "session",
+	keys: ["llave-1", "llave-2"]
 }));
 
 app.set("view engine", "jade");
@@ -65,7 +63,6 @@ app.post("/users", function(req, res){
 });
 
 app.post("/sessions", function(req, res){
-
 	// 1er parámetro: Json con los querys
 	// 2o parámetro: columnas retornaddas (omitido en este caso)
 	// 3er parámetro: un callback
